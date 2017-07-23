@@ -560,7 +560,7 @@
           .ok(gettextCatalog.getString('Add'))
           .cancel(gettextCatalog.getString('Cancel'));
       $mdDialog.show(confirm).then(function(address) {
-        var isAddress = /^[0-9]+[L|l]$/g;
+        var isAddress = /^[0-9]+[R|r]$/g;
         if(isAddress.test(address)){
           accountService.fetchAccount(address).then(function(account){
             self.accounts.push(account);
