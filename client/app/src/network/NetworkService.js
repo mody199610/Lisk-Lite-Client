@@ -12,14 +12,14 @@
 
     var lisk=require('lisk-js');
 
-    var peer={ip:'https://login.lisk.io', isConnected:false, height:0, lastConnection:null};
+    var peer={ip:'https://wallet.rise.vision', isConnected:false, height:0, lastConnection:null};
 
     var connection=$q.defer();
 
     connection.notify(peer);
 
     function getPrice(){
-      $http.get("http://coinmarketcap.northpole.ro/api/v5/LSK.json",{timeout: 2000}).success(function(data){
+      $http.get("http://coinmarketcap.northpole.ro/api/v5/RISE.json",{timeout: 2000}).success(function(data){
         peer.market=data;
       });
       $timeout(function(){
@@ -83,10 +83,10 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'os': 'liskwalletapp',
+          'os': 'risewalletapp',
           'version': '0.5.1',
-          'port': 1,
-          'nethash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511'
+          'port': 5555,
+          'nethash': 'cd8171332c012514864edd8eb6f68fc3ea6cb2afbaf21c56e12751022684cea5'
         }
       }).then(function(resp){
         if(resp.data.success){
@@ -115,7 +115,7 @@
 
     function findGoodPeer(peers, index){
       if(index>peers.length-1){
-        peer.ip="https://login.lisk.io";
+        peer.ip="https://wallet.rise.vision";
         return;
       }
       peer.ip="http://"+peers[index].ip+":"+peers[index].port;
