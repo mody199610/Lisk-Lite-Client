@@ -276,7 +276,7 @@
     function createTransaction(type,config){
       var deferred = $q.defer();
       if(type==0){ //send lisk
-        var isAddress = /^[0-9]+[L|l]$/g;
+        var isAddress = /^[0-9]+[R|r]$/g;
         if(!isAddress.test(config.toAddress)){
           deferred.reject(gettextCatalog.getString("The destination address ")+config.toAddress+gettextCatalog.getString(" is erroneous"));
           return deferred.promise;
@@ -284,7 +284,7 @@
 
         var account=getAccount(config.fromAddress);
         if(config.amount+10000000>account.balance){
-          deferred.reject(gettextCatalog.getString("Not enough LSK on your account ")+config.fromAddress);
+          deferred.reject(gettextCatalog.getString("Not enough RISE on your account ")+config.fromAddress);
           return deferred.promise;
         }
 
@@ -308,7 +308,7 @@
       else if(type==3){ //vote
         var account=getAccount(config.fromAddress);
         if(account.balance<100000000){
-          deferred.reject(gettextCatalog.getString("Not enough LSK on your account ")+config.fromAddress+", "+gettextCatalog.getString("you need at least 1 LSK to vote"));
+          deferred.reject(gettextCatalog.getString("Not enough RISE on your account ")+config.fromAddress+", "+gettextCatalog.getString("you need at least 1 LSK to vote"));
           return deferred.promise;
         }
         try{
